@@ -14,7 +14,7 @@ filename="airports.dat"
 
 number_of_lines = 7698#define the number of lines to read (MAX: 7698)
 
-vertices = {}
+sql = {}
 
 #row[0] - ID //// row[1] - name //// row[3] - country
 with open(filename, 'r') as input_file:
@@ -38,8 +38,8 @@ with open(filename, 'r') as input_file:
         #print row[0],name,country,iata
         name=name.replace("'","")
         country=country.replace("'","")
-        #vertices[row[4]]="INSERT INTO airports values("+"1"+row[0]+",'"+"CP1"+name+"','"+country+"','"+"CP1"+iata+"');"
-        #stmt = ibm_db.exec_immediate(conn,unicode(vertices[row[4]],"utf-8"))
+        sql[row[4]]="INSERT INTO airports values("+"1"+row[0]+",'"+"CP1"+name+"','"+country+"','"+"CP1"+iata+"');"
+        stmt = ibm_db.exec_immediate(conn,unicode(sql[row[4]],"utf-8"))
 
 filename="routes.dat"
 
@@ -54,7 +54,7 @@ with open(filename, 'r') as input_file:
         #print "Add route from",row[2],'to',row[4]#row[2] - source //// row[4] - destination
 
         try:
-            #sql = "INSERT INTO routes values('"+row[2]+"','"+row[4]+"');"
-            #stmt = ibm_db.exec_immediate(conn,sql)
+            sql2 = "INSERT INTO routes values('"+row[2]+"','"+row[4]+"');"
+            stmt = ibm_db.exec_immediate(conn,sql2)
         except KeyError:
             print 'Warrning! KeyError:',row[2],'or KeyError:',row[4]
