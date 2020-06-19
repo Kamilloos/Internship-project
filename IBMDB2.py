@@ -5,10 +5,10 @@ from itertools import islice
 conn = ibm_db.connect("database","user","password")
 
 #DELETE
-#delete = "DELETE FROM airports"
-#stmt = ibm_db.exec_immediate(conn,delete)
-#delete = "DELETE FROM routes"
-#stmt = ibm_db.exec_immediate(conn,delete)
+delete = "DELETE FROM airports"
+stmt = ibm_db.exec_immediate(conn,delete)
+delete = "DELETE FROM routes"
+stmt = ibm_db.exec_immediate(conn,delete)
 
 filename="airports.dat"
 
